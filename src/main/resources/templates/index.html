@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fregments :: head"></head>
+<body class="dashboard-container">
+
+<style>
+    .dashboard-container {
+        background: linear-gradient(135deg, #fff5f5 0%, #ffe5e5 100%);
+        min-height: 100vh;
+    }
+    .content-wrapper {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+    .card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+    }
+    .table {
+        margin: 0;
+        border-collapse: separate;
+        border-spacing: 0;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+    .table thead th {
+        background: linear-gradient(45deg, #ff4757, #ff6b6b);
+        color: white;
+        font-weight: 500;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+        padding: 1rem;
+        border: none;
+    }
+    .table tbody tr:hover {
+        background-color: rgba(255, 71, 87, 0.05);
+    }
+    .table td {
+        padding: 1rem;
+        vertical-align: middle;
+        border-bottom: 1px solid #f1f1f1;
+        color: #444;
+    }
+    .btn {
+        border-radius: 8px;
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+    .btn-edit {
+        background-color: #4834d4;
+        border: none;
+        color: white;
+    }
+    .btn-edit:hover {
+        background-color: #686de0;
+        transform: translateY(-2px);
+    }
+    .btn-delete {
+        background-color: #ff4757;
+        border: none;
+        color: white;
+    }
+    .btn-delete:hover {
+        background-color: #ff6b6b;
+        transform: translateY(-2px);
+    }
+    .alert {
+        border-radius: 10px;
+        border: none;
+        margin-bottom: 1rem;
+    }
+    .action-buttons {
+        display: flex;
+        gap: 0.5rem;
+    }
+</style>
+
+<div th:replace="fregments :: navbar"></div>
+
+<div class="content-wrapper">
+    <div th:if="${error}" th:replace="fregments :: alert-error"></div>
+    <div th:if="${success}" th:replace="fregments :: alert-success"></div>
+
+    <div class="card">
+        <div class="card-body p-0">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Client Name</th>
+                    <th>Date</th>
+                    <th>Case Name</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="lawEntryEach : ${lawEntries}">
+                    <td th:text="${lawEntryEach.id}"></td>
+                    <td>
+                        <div class="fw-semibold" th:text="${lawEntryEach.clientName}"></div>
+                    </td>
+                    <td>
+                        <div class="text-muted" th:text="${#temporals.format(lawEntryEach.date, 'yyyy-MM-dd HH:mm')}"></div>
+                    </td>
+                    <td>
+                        <div class="fw-medium" th:text="${lawEntryEach.caseName}"></div>
+                    </td>
+                    <td>
+                        <div class="text-truncate" style="max-width: 200px;" th:text="${lawEntryEach.description}"></div>
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            <a th:href="@{/lawEntry/edit/{id}(id=${lawEntryEach.id})}" class="btn btn-edit">Edit</a>
+                            <a th:href="@{/lawEntry/delete/{id}(id=${lawEntryEach.id})}" class="btn btn-delete">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- SVG Definitions -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+    </symbol>
+    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+    </symbol>
+</svg>
+
+<div th:replace="fregments :: create-lawEntry"></div>
+<div th:replace="fregments :: script"></div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+/* Common Styles */
+:root {
+    --primary-color: #ff4757;
+    --primary-light: #ff6b6b;
+    --primary-dark: #e8394a;
+    --background-gradient: linear-gradient(135deg, #fff5f5 0%, #ffe5e5 100%);
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background: var(--background-gradient);
+    min-height: 100vh;
+}
+
+/* Navbar Styles */
+.custom-navbar {
+    background: linear-gradient(45deg, var(--primary-color), var(--primary-light));
+    box-shadow: var(--shadow-sm);
+}
+
+.custom-navbar .navbar-brand {
+    color: white;
+    font-weight: 600;
+}
+
+.custom-navbar .nav-link {
+    color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+}
+
+.custom-navbar .nav-link:hover {
+    color: white;
+    transform: translateY(-1px);
+}
+
+.custom-navbar .nav-link.btn-logout {
+    background: white;
+    color: var(--primary-color);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+}
+
+/* Alert Styles */
+.alert {
+    border: none;
+    border-radius: 10px;
+    box-shadow: var(--shadow-sm);
+}
+
+.alert svg {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Modal Styles */
+.modal-content {
+    border: none;
+    border-radius: 15px;
+    box-shadow: var(--shadow-lg);
+}
+
+.modal-header {
+    border-bottom: 1px solid #f1f1f1;
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    border-top: 1px solid #f1f1f1;
+    padding: 1.5rem;
+}
+
+.form-control {
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    border: 1px solid #e1e1e1;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.2);
+    border-color: var(--primary-color);
+}
+
+.btn {
+    border-radius: 8px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--primary-color), var(--primary-light));
+    border: none;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Card Styles */
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: var(--shadow-md);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}

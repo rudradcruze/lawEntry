@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: lawEntry
+  datasource:
+    url: jdbc:mysql://localhost:3306/lawentry?createDatabaseIfNotExist=true
+    username: root
+    password: rudra1234
+  jpa:
+    hibernate:
+      ddl-auto: update
+server:
+  port: 8082
